@@ -21,7 +21,7 @@ AVHRR3 = Image.new("I", (2048, framecount))
 AVHRR4 = Image.new("I", (2048, framecount))
 AVHRR5 = Image.new("I", (2048, framecount))
 
-for i in tqdm(range(framecount)):       #do 1000 gframes
+for i in tqdm(range(framecount)):       #do this for every frame
     for j in range(11090):        #read in one frame
         buffer2 = file.read(2)      #Yay, custom formats. Two bytes are one word, which is little endian encoded.
         buffer[j] = buffer2[1] << 8 | buffer2[0]     #Save little endian encoded 16-Bit files in our buffer.
