@@ -23,7 +23,7 @@ AVHRR5 = Image.new("I", (2048, framecount))
 
 for i in tqdm(range(framecount)):       #do this for every frame
     for j in range(11090):        #read in one frame
-        buffer2 = file.read(2)      #Yay, custom formats. Two bytes are one word, which is little endian encoded.
+        buffer2 = file.read(2)      #Yay, custom formats. Two bytes are one word, which is little endian encoded. Usually One word is 10Bit, but .raw16 is repacked as 16, which makes stuff a lot easier.
         buffer[j] = buffer2[1] << 8 | buffer2[0]     #Save little endian encoded 16-Bit files in our buffer.
     for k in range(2048):
         AVHRR1.putpixel((k, i), 20 * buffer[750 + 5 * k])   #x20 because otherwise the images will be insanely dark.
